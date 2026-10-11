@@ -35,15 +35,6 @@ background:radial-gradient(circle,rgba(255,196,120,.75),rgba(214,163,148,.35) 45
 .float{animation:floaty 7s ease-in-out infinite}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
-@keyframes cflame{0%,100%{transform:scale(1,1) rotate(-1.5deg)}25%{transform:scale(.94,1.08) rotate(2deg)}50%{transform:scale(1.05,.94) rotate(-2.5deg)}75%{transform:scale(.97,1.05) rotate(1.5deg)}}
-@keyframes chalo{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.12)}}
-@keyframes csmoke{0%{opacity:0;transform:translateY(10px) scaleX(1)}25%{opacity:.55}100%{opacity:0;transform:translateY(-38px) scaleX(1.7)}}
-@keyframes cdrip{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
-.cs{transform-box:fill-box;transform-origin:50% 100%}
-.c-flame{animation:cflame 1.7s ease-in-out infinite}.c-flame2{animation:cflame 1.1s ease-in-out infinite reverse}
-.c-halo{transform-box:fill-box;transform-origin:50% 50%;animation:chalo 3s ease-in-out infinite}
-.c-smoke{animation:csmoke 5s ease-out infinite}.c-smoke.b{animation-delay:-2.5s}
-.c-drip{transform-origin:50% 0;transform-box:fill-box;animation:cdrip 9s ease-in-out infinite alternate}
 @media (prefers-reduced-motion:reduce){.hero-video{display:none}}
 a:focus-visible,button:focus-visible{outline:2px solid #B38D54;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
@@ -79,27 +70,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #B38D54;outline-offset:3p
     <div class="enter d3 relative isolate">
       <div class="glow" aria-hidden="true"></div><div class="glow glow2" aria-hidden="true"></div>
       <div class="float"><img src="./images/hero.jpg" alt="Daisy candle on a rose-pink ceramic plate" class="w-full aspect-[6/5] object-cover rounded-t-[999px] rounded-b-3xl shadow-2xl"></div>
-      <div class="float absolute z-10 -bottom-8 -left-2 sm:-left-10 w-40 sm:w-48 rounded-3xl bg-char text-ivory shadow-2xl p-4 text-center" style="animation-duration:6s;animation-delay:-3s" role="img" aria-label="Animation of a candle burning">
-        <svg viewBox="0 -24 120 184" class="w-full h-auto" aria-hidden="true">
-          <defs>
-            <radialGradient id="ch"><stop offset="0" stop-color="#FFC878" stop-opacity=".85"/><stop offset=".55" stop-color="#D6A394" stop-opacity=".25"/><stop offset="1" stop-color="#D6A394" stop-opacity="0"/></radialGradient>
-            <linearGradient id="cb" x1="0" x2="1"><stop offset="0" stop-color="#EBDCC6"/><stop offset=".45" stop-color="#FFF8EC"/><stop offset="1" stop-color="#E2D0B8"/></linearGradient>
-            <linearGradient id="cf" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#F08A3C"/><stop offset=".6" stop-color="#FFC24D"/><stop offset="1" stop-color="#FFE9A8"/></linearGradient>
-          </defs>
-          <circle class="c-halo" cx="60" cy="50" r="46" fill="url(#ch)"/>
-          <path class="c-smoke" d="M60 16 q-7 -8 0 -15 q7 -7 0 -15" stroke="#CDBFB4" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path class="c-smoke b" d="M62 14 q6 -8 0 -14 q-6 -6 0 -13" stroke="#CDBFB4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <rect x="36" y="80" width="48" height="74" rx="8" fill="url(#cb)"/>
-          <ellipse cx="60" cy="80" rx="24" ry="6" fill="#F6E7CF"/><ellipse cx="60" cy="80" rx="17" ry="3.6" fill="#F5CE8E"/>
-          <path class="c-drip" d="M77 82 q5 0 5 7 v16 q0 6 -5 6 q-5 0 -5 -6 v-14 z" fill="#F6E7CF"/>
-          <line x1="60" y1="64" x2="60" y2="80" stroke="#3A2F2A" stroke-width="2.2" stroke-linecap="round"/>
-          <g class="cs c-flame"><path d="M60 20 C71 36 75 48 60 67 C45 48 49 36 60 20Z" fill="url(#cf)"/></g>
-          <g class="cs c-flame2"><path d="M60 40 C66 50 67 58 60 67 C53 58 54 50 60 40Z" fill="#FFF6D8"/></g>
-          <ellipse cx="60" cy="65" rx="3" ry="4" fill="#7FB2FF" opacity=".55"/>
-        </svg>
-        <p class="font-serif text-lg leading-tight mt-1">Lit by hand</p>
-        <p class="text-xs text-ivory/70">Slow, even burn</p>
-      </div>
     </div>
   </div>
 </section>
