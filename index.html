@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inara | Hand-Poured Perfumed Candles</title>
+<meta name="description" content="Sculpted, hand-poured perfumed candles in natural soy wax. Peonies, daisies, roses and soft wax clouds, made in small batches. Inquire on WhatsApp or Instagram.">
+<meta name="theme-color" content="#FAF5EF">
+<!-- Open Graph: replace the image URL with your full Netlify address after deploying -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inara | Hand-Poured Perfumed Candles">
+<meta property="og:description" content="Sculpted floral candles in natural soy wax, poured by hand in small batches.">
+<meta property="og:image" content="https://YOUR-SITE.netlify.app/images/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="./images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{ivory:'#FAF5EF',sand:'#EFE4D8',taupe:'#8A7060',char:'#2E2724',rose:'#D6A394',gold:'#B38D54'},
+fontFamily:{serif:['"Cormorant Garamond"','Georgia','serif'],sans:['Jost','system-ui','sans-serif']}}}}
+</script>
+<style>
+[x-cloak]{display:none!important}
+body{background:#FAF5EF;color:#2E2724}
+@keyframes up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes flicker{0%,100%{opacity:.7;transform:scale(1)}20%{opacity:.95;transform:scale(1.06)}45%{opacity:.6;transform:scale(.97)}70%{opacity:1;transform:scale(1.09)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.enter{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.15s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}
+.glow{position:absolute;inset:-14%;z-index:-1;border-radius:9999px;filter:blur(30px);animation:flicker 3.4s ease-in-out infinite;
+background:radial-gradient(circle,rgba(255,196,120,.75),rgba(214,163,148,.35) 45%,transparent 70%)}
+.glow2{inset:-4%;animation-duration:2.3s;animation-delay:-1s;background:radial-gradient(circle,rgba(255,220,160,.55),transparent 65%)}
+.float{animation:floaty 7s ease-in-out infinite}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@keyframes cflame{0%,100%{transform:scale(1,1) rotate(-1.5deg)}25%{transform:scale(.94,1.08) rotate(2deg)}50%{transform:scale(1.05,.94) rotate(-2.5deg)}75%{transform:scale(.97,1.05) rotate(1.5deg)}}
+@keyframes chalo{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.12)}}
+@keyframes csmoke{0%{opacity:0;transform:translateY(10px) scaleX(1)}25%{opacity:.55}100%{opacity:0;transform:translateY(-38px) scaleX(1.7)}}
+@keyframes cdrip{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
+.cs{transform-box:fill-box;transform-origin:50% 100%}
+.c-flame{animation:cflame 1.7s ease-in-out infinite}.c-flame2{animation:cflame 1.1s ease-in-out infinite reverse}
+.c-halo{transform-box:fill-box;transform-origin:50% 50%;animation:chalo 3s ease-in-out infinite}
+.c-smoke{animation:csmoke 5s ease-out infinite}.c-smoke.b{animation-delay:-2.5s}
+.c-drip{transform-origin:50% 0;transform-box:fill-box;animation:cdrip 9s ease-in-out infinite alternate}
+@media (prefers-reduced-motion:reduce){.hero-video{display:none}}
+a:focus-visible,button:focus-visible{outline:2px solid #B38D54;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body class="font-sans font-light antialiased" x-data="catalog()" x-init="init()" @keydown.escape.window="close()" @keydown.arrow-right.window="sel&&(pic=(pic+1)%sel.imgs.length)" @keydown.arrow-left.window="sel&&(pic=(pic-1+sel.imgs.length)%sel.imgs.length)">
+
+<header class="fixed top-0 inset-x-0 z-30 bg-ivory/85 backdrop-blur border-b border-sand">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 font-serif text-2xl font-semibold tracking-wide" aria-label="Inara home"><img src="./images/logo.png" alt="" width="44" height="44" class="w-11 h-11 rounded-full shadow-sm">Inara</a>
+    <nav class="hidden md:flex gap-8 text-sm text-taupe">
+      <a href="#collection" class="hover:text-char transition">Collection</a><a href="#craft" class="hover:text-char transition">Craft</a><a href="#gallery" class="hover:text-char transition">Gallery</a>
+    </nav>
+    <a :href="wa()" target="_blank" rel="noopener" class="text-sm rounded-full px-5 py-2 bg-char text-ivory hover:bg-gold transition">Inquire</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative isolate overflow-hidden bg-char pt-16">
+  <video class="hero-video absolute inset-0 -z-10 w-full h-full object-cover" autoplay muted loop playsinline preload="auto" poster="./images/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="./videos/candles-loop.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-char/90 via-char/65 to-char/35" aria-hidden="true"></div>
+  <div class="relative max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center py-14 md:py-24">
+    <div>
+      <h1 class="enter font-serif text-5xl md:text-7xl leading-[1.02] font-medium text-ivory">Elevate your space with hand-poured luxury</h1>
+      <p class="enter d1 mt-6 text-lg text-ivory/80 max-w-md leading-relaxed">Sculpted peonies, daisies and soft wax clouds that glow like a held breath. Poured by hand, scented with perfume-grade oils.</p>
+      <div class="enter d2 mt-9 flex flex-wrap gap-4">
+        <a href="#collection" class="rounded-full bg-ivory text-char px-8 py-3.5 hover:bg-gold transition duration-300">Explore the collection</a>
+        <a :href="wa()" target="_blank" rel="noopener" class="rounded-full px-8 py-3.5 border border-ivory/50 text-ivory hover:border-ivory transition">Inquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="enter d3 relative isolate">
+      <div class="glow" aria-hidden="true"></div><div class="glow glow2" aria-hidden="true"></div>
+      <div class="float"><img src="./images/hero.jpg" alt="Daisy candle on a rose-pink ceramic plate" class="w-full aspect-[6/5] object-cover rounded-t-[999px] rounded-b-3xl shadow-2xl"></div>
+      <div class="float absolute z-10 -bottom-8 -left-2 sm:-left-10 w-40 sm:w-48 rounded-3xl bg-char text-ivory shadow-2xl p-4 text-center" style="animation-duration:6s;animation-delay:-3s" role="img" aria-label="Animation of a candle burning">
+        <svg viewBox="0 -24 120 184" class="w-full h-auto" aria-hidden="true">
+          <defs>
+            <radialGradient id="ch"><stop offset="0" stop-color="#FFC878" stop-opacity=".85"/><stop offset=".55" stop-color="#D6A394" stop-opacity=".25"/><stop offset="1" stop-color="#D6A394" stop-opacity="0"/></radialGradient>
+            <linearGradient id="cb" x1="0" x2="1"><stop offset="0" stop-color="#EBDCC6"/><stop offset=".45" stop-color="#FFF8EC"/><stop offset="1" stop-color="#E2D0B8"/></linearGradient>
+            <linearGradient id="cf" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#F08A3C"/><stop offset=".6" stop-color="#FFC24D"/><stop offset="1" stop-color="#FFE9A8"/></linearGradient>
+          </defs>
+          <circle class="c-halo" cx="60" cy="50" r="46" fill="url(#ch)"/>
+          <path class="c-smoke" d="M60 16 q-7 -8 0 -15 q7 -7 0 -15" stroke="#CDBFB4" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path class="c-smoke b" d="M62 14 q6 -8 0 -14 q-6 -6 0 -13" stroke="#CDBFB4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <rect x="36" y="80" width="48" height="74" rx="8" fill="url(#cb)"/>
+          <ellipse cx="60" cy="80" rx="24" ry="6" fill="#F6E7CF"/><ellipse cx="60" cy="80" rx="17" ry="3.6" fill="#F5CE8E"/>
+          <path class="c-drip" d="M77 82 q5 0 5 7 v16 q0 6 -5 6 q-5 0 -5 -6 v-14 z" fill="#F6E7CF"/>
+          <line x1="60" y1="64" x2="60" y2="80" stroke="#3A2F2A" stroke-width="2.2" stroke-linecap="round"/>
+          <g class="cs c-flame"><path d="M60 20 C71 36 75 48 60 67 C45 48 49 36 60 20Z" fill="url(#cf)"/></g>
+          <g class="cs c-flame2"><path d="M60 40 C66 50 67 58 60 67 C53 58 54 50 60 40Z" fill="#FFF6D8"/></g>
+          <ellipse cx="60" cy="65" rx="3" ry="4" fill="#7FB2FF" opacity=".55"/>
+        </svg>
+        <p class="font-serif text-lg leading-tight mt-1">Lit by hand</p>
+        <p class="text-xs text-ivory/70">Slow, even burn</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section id="collection" class="bg-sand/50 py-20">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="reveal font-serif text-4xl md:text-5xl text-center">The collection</h2>
+    <p class="reveal text-center text-taupe mt-3 mb-10">Tap any piece to explore its scent and details.</p>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="Scent family">
+      <template x-for="f in families" :key="f">
+        <button role="tab" :aria-selected="active===f" @click="active=f"
+          class="rounded-full px-5 py-2 text-sm border transition duration-300"
+          :class="active===f ? 'bg-char text-ivory border-char' : 'border-taupe/40 text-taupe hover:border-char hover:text-char'" x-text="f"></button>
+      </template>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <template x-for="p in products" :key="p.id">
+        <article x-show="active==='All' || p.family===active"
+          x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+          x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 scale-95"
+          class="group bg-ivory rounded-3xl overflow-hidden shadow-md transition duration-[1400ms] ease-out hover:translate-y-[-8px] hover:shadow-2xl flex flex-col">
+          <button @click="open(p)" class="text-left" :aria-label="'View details for '+p.name">
+            <div class="relative overflow-hidden"><span x-show="p.imgs.length>1" x-text="p.imgs.length+' photos'" class="absolute top-3 right-3 z-10 rounded-full bg-ivory/90 text-xs px-3 py-1"></span><img :src="p.imgs[0]" :alt="p.name" loading="lazy" class="w-full aspect-[3/4] object-contain bg-sand transition duration-[2600ms] ease-out group-hover:scale-[1.03]"></div>
+            <div class="p-6 pb-3">
+              <div class="flex items-baseline justify-between gap-3"><h3 class="font-serif text-2xl" x-text="p.name"></h3><span class="text-gold font-medium" x-text="priceLabel(p)"></span></div>
+              <p class="text-taupe text-sm mt-1" x-text="p.tag"></p>
+              <p class="mt-3 text-sm text-char/80 underline decoration-gold/60 underline-offset-4 group-hover:decoration-gold">Scent breakdown</p>
+            </div>
+          </button>
+          <div class="px-6 pb-6 mt-auto pt-3 flex gap-3">
+            <a :href="wa(p)" target="_blank" rel="noopener" class="flex-1 text-center rounded-full bg-char text-ivory py-3 text-sm hover:bg-gold transition duration-300">Inquire via WhatsApp</a>
+            <a :href="ig" target="_blank" rel="noopener" aria-label="Order on Instagram" class="rounded-full border border-char px-4 py-3 text-sm hover:bg-char hover:text-ivory transition duration-300">IG</a>
+          </div>
+        </article>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section id="craft" class="py-20">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+    <img src="./images/story.jpg" alt="Bubble candle on a wooden shelf beside dried pampas" loading="lazy" class="reveal rounded-3xl w-full shadow-xl">
+    <div class="reveal">
+      <h2 class="font-serif text-4xl md:text-5xl leading-tight">Made slowly, made to be lit</h2>
+      <p class="mt-5 text-taupe leading-relaxed max-w-md">No factories, no shortcuts. Each candle is poured and shaped in our studio, then left to cure so the scent opens fully the first time you light it.</p>
+      <ul class="mt-9 grid sm:grid-cols-2 gap-6 text-sm">
+        <li><h3 class="font-serif text-xl">100% natural soy wax</h3><p class="text-taupe mt-1">Clean, creamy burn with soft shape detail.</p></li>
+        <li><h3 class="font-serif text-xl">Perfume-grade oils</h3><p class="text-taupe mt-1">Layered top, heart and base notes.</p></li>
+        <li><h3 class="font-serif text-xl">Clean cotton wicks</h3><p class="text-taupe mt-1">Low smoke, steady flame.</p></li>
+        <li><h3 class="font-serif text-xl">Small-batch pouring</h3><p class="text-taupe mt-1">Poured by hand, never mass produced.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="bg-sand/50 py-20">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="reveal font-serif text-4xl md:text-5xl text-center">In the studio and at home</h2>
+    <p class="reveal text-center text-taupe mt-3 mb-12">Our candles and scented pebbles, styled the way they're loved.</p>
+    <div class="columns-2 md:columns-3 gap-4">
+      <template x-for="g in gallery" :key="g.src">
+        <img :src="g.src" :alt="g.alt" loading="lazy" class="reveal mb-4 w-full rounded-2xl shadow-md break-inside-avoid transition duration-[2200ms] ease-out hover:scale-[1.03] hover:shadow-2xl">
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer id="contact" class="bg-char text-ivory py-16 px-5">
+  <div class="max-w-6xl mx-auto text-center">
+    <img src="./images/logo.png" alt="Inara" width="80" height="80" class="mx-auto w-20 h-20 rounded-full mb-6">
+    <h2 class="font-serif text-4xl md:text-5xl">Find your scent</h2>
+    <p class="text-ivory/70 mt-3 max-w-md mx-auto">Message us to order, ask about custom colours and scents, or arrange a gift.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a :href="wa()" target="_blank" rel="noopener" class="rounded-full bg-gold text-char px-8 py-3.5 hover:bg-ivory transition duration-300">Inquire via WhatsApp</a>
+      <a :href="ig" target="_blank" rel="noopener" class="rounded-full border border-ivory/50 px-8 py-3.5 hover:bg-ivory hover:text-char transition duration-300">Order on Instagram</a>
+    </div>
+    <p class="mt-12 pt-6 border-t border-ivory/15 text-xs text-ivory/50">© 2026 Inara. Never leave a burning candle unattended.</p>
+  </div>
+</footer>
+
+<!-- SCENT MODAL -->
+<div x-cloak x-show="sel" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6" role="dialog" aria-modal="true" aria-label="Scent breakdown">
+  <div x-show="sel" x-transition.opacity.duration.300ms @click="close()" class="absolute inset-0 bg-char/60 backdrop-blur-sm"></div>
+  <div x-show="sel" x-transition:enter="transition duration-500 ease-out" x-transition:enter-start="opacity-0 translate-y-12 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+       x-transition:leave="transition duration-250 ease-in" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 translate-y-8"
+       class="relative bg-ivory w-full sm:max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl shadow-2xl grid sm:grid-cols-2">
+    <div class="bg-sand flex flex-col sm:h-full">
+      <div class="relative flex-1 min-h-0">
+        <img :src="sel?.imgs[pic]" :alt="(sel?.name||'')+' photo '+(pic+1)" class="w-full h-80 sm:h-full sm:min-h-[420px] object-contain">
+        <div x-show="sel?.imgs.length>1">
+          <button @click="pic=(pic-1+sel.imgs.length)%sel.imgs.length" aria-label="Previous photo" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-ivory/90 hover:bg-char hover:text-ivory transition duration-500 text-xl leading-none">&lsaquo;</button>
+          <button @click="pic=(pic+1)%sel.imgs.length" aria-label="Next photo" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-ivory/90 hover:bg-char hover:text-ivory transition duration-500 text-xl leading-none">&rsaquo;</button>
+        </div>
+      </div>
+      <div x-show="sel?.imgs.length>1" class="flex gap-2 p-3 overflow-x-auto">
+        <template x-for="(m,i) in (sel?.imgs||[])" :key="m">
+          <button @click="pic=i" :aria-label="'Show photo '+(i+1)" class="shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition duration-500" :class="pic===i ? 'border-gold' : 'border-transparent opacity-60 hover:opacity-100'"><img :src="m" alt="" class="w-full h-full object-cover"></button>
+        </template>
+      </div>
+    </div>
+    <div class="p-7 sm:p-9">
+      <button @click="close()" aria-label="Close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-ivory/90 hover:bg-char hover:text-ivory transition text-xl leading-none">&times;</button>
+      <p class="text-sm text-taupe" x-text="sel?.family"></p>
+      <h3 class="font-serif text-3xl mt-1" x-text="sel?.name"></h3>
+      <p class="text-gold font-medium mt-1" x-text="selPrice()"></p>
+      <div class="mt-6 text-sm">
+        <p class="font-serif text-lg">Choose your scent</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <template x-for="(s,i) in scents" :key="s.name">
+            <button @click="scent=i" class="rounded-full border px-4 py-2 transition duration-500" :class="scent===i ? 'bg-char text-ivory border-char' : 'border-taupe/40 hover:border-char'">
+              <span x-text="s.name"></span><span class="ml-2" :class="scent===i ? 'text-rose' : 'text-gold'" x-text="unit(sel,i) ? fmt(unit(sel,i)) : ''"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+      <div x-show="sel?.type==='glass'" class="mt-5 text-sm">
+        <p class="font-serif text-lg">Topping</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <template x-for="t in toppings" :key="t.name">
+            <button @click="topping=t.name" class="rounded-full border px-4 py-2 transition duration-500" :class="topping===t.name ? 'bg-char text-ivory border-char' : 'border-taupe/40 hover:border-char'">
+              <span x-text="t.name"></span><span class="ml-2" :class="topping===t.name ? 'text-rose' : 'text-gold'" x-text="'+'+t.add+' DA'"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+      <dl class="mt-6 space-y-3 text-sm">
+        <div><dt class="font-serif text-lg">Top notes</dt><dd class="text-taupe" x-text="scents[scent].top"></dd></div>
+        <div><dt class="font-serif text-lg">Heart notes</dt><dd class="text-taupe" x-text="scents[scent].heart"></dd></div>
+        <div><dt class="font-serif text-lg">Base notes</dt><dd class="text-taupe" x-text="scents[scent].base"></dd></div>
+        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-sand">
+          <div><dt class="text-taupe">Burn time</dt><dd x-text="sel?.burn"></dd></div>
+          <div><dt class="text-taupe">Wax</dt><dd x-text="sel?.wax"></dd></div>
+        </div>
+      </dl>
+      <div class="mt-7 flex flex-col gap-3">
+        <a :href="wa(sel,true)" target="_blank" rel="noopener" class="text-center rounded-full bg-char text-ivory py-3 hover:bg-gold transition duration-300">Inquire via WhatsApp</a>
+        <a :href="ig" target="_blank" rel="noopener" class="text-center rounded-full border border-char py-3 hover:bg-char hover:text-ivory transition duration-300">Order on Instagram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function catalog(){return{
+ // ===== EDIT THESE =====
+ cur:" DA",
+ phone:"000000000000",          // WhatsApp number, country code first, digits only
+ ig:"https://instagram.com/inara_candles_",
+ // ======================
+ active:"All", sel:null,
+ families:["All","Flower candles","Glass candles","Bubble & pebbles"],
+ // Prices in DA by type, in the same order as the scents list below
+ base:{bubble:[550,600,500,550,500],rose:[250,250,200,250,200],jouri:[300,350,300,350,300],daisy:[120,120,120,120,120],petite:[120,120,120,120,120],glass:[1000,1000,900,1000,900]},
+ toppings:[{name:"Daisy",add:80},{name:"Petite rose",add:80},{name:"Rose",add:100}],
+ // Scent notes are placeholders: edit freely
+ scents:[
+  {name:"White rose",top:"Dewy petals, bergamot",heart:"White rose, peony",base:"Soft musk"},
+  {name:"Orchid",top:"Pink pepper, pear",heart:"Orchid, ylang-ylang",base:"Vanilla, sandalwood"},
+  {name:"Caramel",top:"Warm sugar",heart:"Salted caramel",base:"Vanilla bean, amber"},
+  {name:"Jasmine",top:"Green leaves, neroli",heart:"Jasmine sambac",base:"White musk"},
+  {name:"Lemon / mint / strawberry",top:"Lemon zest, fresh mint",heart:"Ripe strawberry",base:"Light musk"}
+ ],
+ scent:0, topping:"Daisy", pic:0,
+ // type: jouri, rose, petite, bubble, glass, or none (shows "Ask for price")
+ products:[
+  {id:1,name:"Jouri Candle",family:"Flower candles",tag:"Full-petal flower candle",type:"jouri",imgs:["./images/gallery1.jpg","./images/candle2.jpg","./images/gallery2.jpg"],burn:"40+ hours",wax:"100% soy wax"},
+  {id:2,name:"Rose Candle",family:"Flower candles",tag:"A classic rose in bloom",type:"rose",imgs:["./images/candle5.jpg"],burn:"40+ hours",wax:"100% soy wax"},
+  {id:3,name:"Bubble Candle",family:"Bubble & pebbles",tag:"Sculpted wax bubbles",type:"bubble",imgs:["./images/candle4.jpg","./images/gallery6.jpg","./images/story.jpg"],burn:"30+ hours",wax:"100% soy wax"},
+  {id:4,name:"Petite Rose",family:"Flower candles",tag:"A small rose, big on scent",type:"petite",imgs:["./images/candle1.jpg"],burn:"20+ hours",wax:"100% soy wax"},
+  {id:5,name:"Glass Candle",family:"Glass candles",tag:"Poured in glass, finished with a flower topping",type:"glass",imgs:["./images/gallery4.jpg","./images/candle3.jpg","./images/gallery3.jpg"],burn:"50+ hours",wax:"100% soy wax"},
+  {id:6,name:"Scented Pebbles",family:"Bubble & pebbles",tag:"Scented wax pieces for wardrobes and gifts",type:"none",imgs:["./images/gallery7.jpg","./images/gallery5.jpg","./images/candle6.jpg"],burn:"Scent lasts for months",wax:"Soy wax"}
+ ],
+ gallery:[
+  {src:"./images/gallery1.jpg",alt:"Orange and lavender peony candles on sheer white fabric"},
+  {src:"./images/gallery2.jpg",alt:"Lavender and peach peony candles beside ivory roses"},
+  {src:"./images/gallery3.jpg",alt:"Daisy candle on a pink plate beside an open book"},
+  {src:"./images/gallery4.jpg",alt:"Close-up of a peach daisy candle in a glass jar"},
+  {src:"./images/gallery5.jpg",alt:"Orange hexagon and star wax pieces on white linen"},
+  {src:"./images/gallery6.jpg",alt:"Cream bubble candle resting on an open book"},
+  {src:"./images/gallery7.jpg",alt:"Two white wax stars on dusty rose fabric"}
+ ],
+ fmt(n){return n.toLocaleString("en-US")+this.cur},
+ unit(p,i){if(!p||!this.base[p.type])return null;let n=this.base[p.type][i];if(p.type==="glass")n+=this.toppings.find(t=>t.name===this.topping).add;return n},
+ priceLabel(p){const b=this.base[p.type];if(!b)return "Ask for price";return "From "+this.fmt(Math.min(...b)+(p.type==="glass"?80:0))},
+ selPrice(){const n=this.unit(this.sel,this.scent);return n?this.fmt(n):"Ask for price"},
+ wa(p,c){let t="Hello! I'd like to ask about your candles.";
+  if(p){t=`Hello! I'd like to ask about the "${p.name}" candle.`;
+   if(c){const n=this.unit(p,this.scent);t=`Hello! I'd like to order the "${p.name}" candle in ${this.scents[this.scent].name}`+(p.type==="glass"?` with a ${this.topping.toLowerCase()} topping`:"")+(n?` (${this.fmt(n)}).`:".")}}
+  return `https://wa.me/${this.phone}?text=${encodeURIComponent(t)}`},
+ open(p){this.sel=p;this.scent=0;this.topping="Daisy";this.pic=0;document.body.style.overflow='hidden'},
+ close(){this.sel=null;document.body.style.overflow=''},
+ init(){
+  if(!('IntersectionObserver' in window))return document.querySelectorAll('.reveal').forEach(e=>e.classList.add('in'));
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  this.$nextTick(()=>document.querySelectorAll('.reveal').forEach(e=>io.observe(e)));
+ }}}
+</script>
+</body>
+</html>
